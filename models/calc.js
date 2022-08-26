@@ -10,6 +10,8 @@ const calcSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  color: String,
+  bgColor: String,
   fields: [fieldSchema],
   dateCreated: {
     type: Date,
