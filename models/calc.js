@@ -10,8 +10,9 @@ const calcSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  color: String,
-  bgColor: String,
+  color: { type: String },
+  bgColor: { type: String },
+  pinned: { type: Boolean, default: false },
   fields: [fieldSchema],
   dateCreated: {
     type: Date,

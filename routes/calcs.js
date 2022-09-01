@@ -20,6 +20,9 @@ router.post('/', async (req, res) => {
     title: req.body.title,
     fields: req.body.fields,
     createdBy: req.body.createdBy,
+    color: req.body.color,
+    bgColor: req.body.bgColor,
+    pinned: req.body.pinned,
   });
   try {
     const newCalc = await Calc.save();
@@ -32,7 +35,10 @@ router.post('/', async (req, res) => {
 router.patch('/:id', getCalc, async (req, res) => {
   if (req.body.title != null) res.Calc.title = req.body.title;
   if (req.body.fields != null) res.Calc.fields = req.body.fields;
-  if (req.body.createdBy != null) res.Calc.title = req.body.createdBy;
+  if (req.body.createdBy != null) res.Calc.createdBy = req.body.createdBy;
+  if (req.body.bgColor != null) res.Calc.bgColor = req.body.bgColor;
+  if (req.body.color != null) res.Calc.color = req.body.color;
+  if (req.body.pinned != null) res.Calc.pinned = req.body.pinned;
   try {
     const updatedCalc = await res.Calc.save();
     res.json(updatedCalc);
