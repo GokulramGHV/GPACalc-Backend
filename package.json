@@ -2,7 +2,7 @@
   "name": "gpacalc",
   "version": "1.0.0",
   "description": "A tool to Calculate your GPA",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js"
   },
