@@ -23,6 +23,7 @@ router.post('/', async (req, res) => {
     color: req.body.color,
     bgColor: req.body.bgColor,
     pinned: req.body.pinned,
+    cgpaCalc: req.body.cgpaCalc,
   });
   try {
     const newCalc = await Calc.save();
@@ -39,6 +40,7 @@ router.patch('/:id', getCalc, async (req, res) => {
   if (req.body.bgColor != null) res.Calc.bgColor = req.body.bgColor;
   if (req.body.color != null) res.Calc.color = req.body.color;
   if (req.body.pinned != null) res.Calc.pinned = req.body.pinned;
+  if (req.body.cgpaCalc != null) res.Calc.cgpaCalc = req.body.cgpaCalc;
   try {
     const updatedCalc = await res.Calc.save();
     res.json(updatedCalc);
@@ -47,12 +49,22 @@ router.patch('/:id', getCalc, async (req, res) => {
   }
 });
 
-router.delete('/:id', getCalc, async (req, res) => {
+// router.delete('/:id', getCalc, async (req, res) => {
+//   try {
+//     await res.Calc.remove();
+//     res.json({ message: 'Deleted Calc' });
+//   } catch (err) {
+//     return res.status(500).json({ message: err.message });
+//   }
+// });
+
+router.post('/:id/responses', getCalc, async (req, res) => {
+  res.Calc.responses.push(req.body.value);
   try {
-    await res.Calc.remove();
-    res.json({ message: 'Deleted Calc' });
+    const updatedCalc = await res.Calc.save();
+    res.json(updatedCalc);
   } catch (err) {
-    return res.status(500).json({ message: err.message });
+    return res.status(400).json({ message: err.message });
   }
 });
 

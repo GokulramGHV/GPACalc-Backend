@@ -14,6 +14,10 @@ const calcSchema = new mongoose.Schema({
   bgColor: { type: String },
   pinned: { type: Boolean, default: false },
   fields: [fieldSchema],
+  responses: {
+    type: Array,
+    default: [],
+  },
   dateCreated: {
     type: Date,
     required: true,
@@ -22,6 +26,10 @@ const calcSchema = new mongoose.Schema({
   createdBy: {
     type: String,
     required: true,
+  },
+  cgpaCalc: {
+    type: Boolean,
+    default: false,
   },
 });
 
